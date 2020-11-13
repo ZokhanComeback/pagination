@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <a class="button" href="/text">Text</a>
+    <div class="lds-default">
+      <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+    <div class="dog" id="dog"></div>
+    <button class="button" id="button">Button</button>
+    <script>
+      const setDog = (image) => {
+        const loader = document.querySelector('.lds-default');
+        const img = new Image();
+        img.src = image;
+
+        img.addEventListener('load', () => {
+          const dog = document.querySelector('#dog');
+          dog.innerHTML = '';
+          dog.appendChild(img);
+          loader.style.display = 'none';
+        });
+      };
+      const getDog = async (callback) => {
+        const loader = document.querySelector('.lds-default');
+        loader.style.display = 'block';
+        const data = await fetch('https://dog.ceo/api/breeds/image/random');
+        const image = await data.json();
+        callback(image.message);
+      };
+      window.addEventListener('load', () => {
+        const button = document.querySelector('#button');
+        button.addEventListener('click', () => {
+          getDog(setDog);
+        });
+      });
+    </script>
+  </body>
+</html>

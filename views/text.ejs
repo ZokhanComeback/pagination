@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+  <div class="text">
+      <p class="text__content"><%=text%></p>
+      <div class="text__pagination">
+          <% for (var i = 1; i <= all.length; i++) { %>
+              <% if (i !== page) { %>
+                <a href="<%=i - 1%>" class="text__pagination-item"><%=i%></a>
+              <%} else { %>
+                <span class="text__pagination-item text__pagination-item_active"><%=i%></span>
+              <% } %>
+          <% } %>
+      </div>
+  </div>
+</body>
+</html>
